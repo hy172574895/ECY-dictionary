@@ -21,7 +21,7 @@ let s:your_plugin_name = 'dictionary'
 
 " must put these outside a function
 " s:current_file_dir look like: /home/myplug/plugin_for_ECY
-let  s:current_file_dir = expand( '<sfile>:p:h:h:h:h' )
+let  s:current_file_dir = expand( '<sfile>:p:h:h:h' )
 let  s:current_file_dir = tr(s:current_file_dir, '\', '/')
 
 fun! s:MyInstaller() " called by user. Maybe only once.
@@ -36,7 +36,7 @@ fun! s:MyInstaller() " called by user. Maybe only once.
   " checked. Must return 'status':0, then return python Server.
   return {'status':'0',
         \'description':"ok", 'lib':
-        \'example1.server.dictionary', 
+        \'dictionary.server.dictionary', 
         \'name': s:your_plugin_name, 
         \'path': s:current_file_dir
         \}
@@ -59,6 +59,6 @@ endif
 call s:Regist(
       \'s:MyInstaller',
       \'s:MyUnInstaller',
-      \'example1.client.dictionary',
+      \'dictionary.client.dictionary',
       \s:current_file_dir,
       \s:your_plugin_name)
