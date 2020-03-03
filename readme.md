@@ -1,4 +1,7 @@
-# Installation
+# Installation, this a plugin of ECY.
+Requests
+> Plug 'hy172574895/EasyCompleteYou'
+
 Use Plugin-manager
 > Plug 'hy172574895/ECY-dictionary'
 
