@@ -51,7 +51,7 @@ if !s:HasECY()
 endif
 
 if !exists('g:my_plugin_dictionary_file_path')
-  let g:my_plugin_dictionary_file_path = expand( '<sfile>:p:h:h:h' ) . '/wordmax.dict'
+  let g:my_plugin_dictionary_file_path = expand( '<sfile>:p:h:h:h' ) . '/ecdict.csv'
   let g:my_plugin_dictionary_file_path = tr(g:my_plugin_dictionary_file_path, '\', '/')
 endif
 
