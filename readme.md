@@ -1,5 +1,5 @@
 # Installation, this a plugin of ECY.
-Requests
+Required
 > Plug 'hy172574895/EasyCompleteYou'
 
 Use Plugin-manager
@@ -26,3 +26,5 @@ TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
 
  0. You just DO WHAT THE FUCK YOU WANT TO.
 
+Acknowledgment
+https://github.com/skywind3000/ECDICT
