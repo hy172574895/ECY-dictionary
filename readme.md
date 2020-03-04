@@ -14,6 +14,16 @@ and then
 中国用户可以使用这个镜像，很快很多很多！
 > Plug 'https://gitee.com/Jimmy_Huang/ECY-dictionary'
 
+# Options
+## g:dictionary_csv_file_path
+** String **
+default value: '~/ecdict.csv'
+
+## g:dictionary_additional_dict_path
+** List **
+default value: []
+Path to txt file you want, encodeing must be 'utf-8'.
+Such as `let g:dictionary_additional_dict_path = ['/home/example1/wordlist.txt']
 
 # License
     DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE

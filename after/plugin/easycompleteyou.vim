@@ -50,10 +50,16 @@ if !s:HasECY()
   finish
 endif
 
-if !exists('g:my_plugin_dictionary_file_path')
-  let g:my_plugin_dictionary_file_path = expand( '<sfile>:p:h:h:h' ) . '/ecdict.csv'
-  let g:my_plugin_dictionary_file_path = tr(g:my_plugin_dictionary_file_path, '\', '/')
+if !exists('g:dictionary_csv_file_path')
+  let g:dictionary_csv_file_path = expand( '<sfile>:p:h:h:h' ) . '/ecdict.csv'
+  let g:dictionary_csv_file_path = tr(g:dictionary_csv_file_path, '\', '/')
 endif
+
+let g:dictionary_frequency_of_filtering_words = 
+      \get(g:, 'dictionary_frequency_of_filtering_words', 1000)
+
+let g:dictionary_additional_dict_path = 
+      \get(g:, 'dictionary_additional_dict_path', [])
 
 " (installer, uninstaller, client_lib, client_path, engine_name)
 call s:Regist(

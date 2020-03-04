@@ -9,10 +9,12 @@ class Operate(scope_.Event):
 
     def _get_dictionary_file_name(self):
         if self._dictionary_file_name is None:
-            self._dictionary_file_name = vim_lib.GetVariableValue('g:my_plugin_dictionary_file_path')
+            self._dictionary_file_name = vim_lib.GetVariableValue('g:dictionary_csv_file_path')
         return self._dictionary_file_name
 
     def OnBufferEnter(self):
         msg = {}
         msg['DictFileName'] = self._get_dictionary_file_name()
+        msg['Frequency'] = vim_lib.GetVariableValue('g:dictionary_frequency_of_filtering_words')
+        msg['AdditionalPath'] = vim_lib.GetVariableValue('g:dictionary_additional_dict_path')
         return self._pack(msg, 'OnBufferEnter')
