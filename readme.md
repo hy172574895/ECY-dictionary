@@ -16,13 +16,15 @@ and then
 
 # Options
 ## g:dictionary_csv_file_path
-** String **
+**String**  
 default value: '~/ecdict.csv'
 
+
 ## g:dictionary_additional_dict_path
-** List **
+**List**  
 default value: []
-Path to txt file you want, encodeing must be 'utf-8'.
+
+Path to txt file you want, encodeing must be 'utf-8'.  
 Such as `let g:dictionary_additional_dict_path = ['/home/example1/wordlist.txt']
 
 # License
