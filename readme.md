@@ -11,7 +11,7 @@ and then
 :ECYInstall dictionary
 ```
 
-中国用户可以使用这个镜像，很快很多很多！
+中国用户可以使用这个镜像，会快很多很多！
 > Plug 'https://gitee.com/Jimmy_Huang/ECY-dictionary'
 
 # Options
