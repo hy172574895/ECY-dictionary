@@ -6,15 +6,9 @@ fun! s:HasECY()
   return v:false
 endf
 
-fun! s:Regist(installer, uninstaller, client_lib, client_path, engine_name) " called after vim started.
-  call ECY#install#RegisterClient(a:engine_name, a:client_lib, a:client_path)
-  call ECY#install#RegisterInstallFunction(a:engine_name, function(a:installer))
-  call ECY#install#RegisterUnInstallFunction(a:engine_name, function(a:uninstaller))
-endf
-
-" ==============================================================================
-" you can just copy the above. What you need to modify is the following.
-" ==============================================================================
+if !s:HasECY()
+  finish
+endif
 
 " a plugin name can not contain space or any symbols.
 let s:your_plugin_name = 'dictionary'
@@ -23,7 +17,10 @@ let s:your_plugin_name = 'dictionary'
 " s:current_file_dir look like: /home/myplug/plugin_for_ECY
 let  s:current_file_dir = expand( '<sfile>:p:h:h:h' )
 let  s:current_file_dir = tr(s:current_file_dir, '\', '/')
+let s:client_full_path  = s:current_file_dir . '/dictionary/client/dictionary.py'
+let s:server_full_path  = s:current_file_dir . '/dictionary/server/dictionary.py.py'
 
+"{{{
 fun! s:MyInstaller() " called by user. Maybe only once.
   " 1
   " you should check your plugin dependencies here.
@@ -34,21 +31,13 @@ fun! s:MyInstaller() " called by user. Maybe only once.
 
   " 2
   " checked. Must return 'status':0, then return python Server.
-  return {'status':'0',
-        \'description':"ok", 'lib':
-        \'dictionary.server.dictionary', 
-        \'name': s:your_plugin_name, 
-        \'path': s:current_file_dir
-        \}
+  return {'status':'0', 'description':"ok", 'name': s:your_plugin_name}
 endf
 
 fun! s:MyUnInstaller() " called by user. Maybe only once.
   return {'status': '0', 'name': s:your_plugin_name}
 endf
-
-if !s:HasECY()
-  finish
-endif
+"}}}
 
 if !exists('g:dictionary_csv_file_path')
   let g:dictionary_csv_file_path = expand( '<sfile>:p:h:h:h' ) . '/ecdict.csv'
@@ -59,12 +48,8 @@ let g:dictionary_frequency_of_filtering_words =
       \get(g:, 'dictionary_frequency_of_filtering_words', 1000)
 
 let g:dictionary_additional_dict_path = 
-      \get(g:, 'dictionary_additional_dict_path', [])
+      \get(g:, 'dictionary_additional_dict_path', ['C:/Users/qwe/Desktop/google-10000-english-master/20k.txt'])
 
-" (installer, uninstaller, client_lib, client_path, engine_name)
-call s:Regist(
-      \'s:MyInstaller',
-      \'s:MyUnInstaller',
-      \'dictionary.client.dictionary',
-      \s:current_file_dir,
-      \s:your_plugin_name)
+
+call ECY#install#AddEngineInfo(s:your_plugin_name, s:client_full_path,
+      \s:server_full_path, function('s:MyInstaller'), function('s:MyUnInstaller'))
