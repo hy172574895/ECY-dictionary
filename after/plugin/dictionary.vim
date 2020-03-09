@@ -18,18 +18,10 @@ let s:your_plugin_name = 'dictionary'
 let  s:current_file_dir = expand( '<sfile>:p:h:h:h' )
 let  s:current_file_dir = tr(s:current_file_dir, '\', '/')
 let s:client_full_path  = s:current_file_dir . '/dictionary/client/dictionary.py'
-let s:server_full_path  = s:current_file_dir . '/dictionary/server/dictionary.py.py'
+let s:server_full_path  = s:current_file_dir . '/dictionary/server/dictionary.py'
 
 "{{{
 fun! s:MyInstaller() " called by user. Maybe only once.
-  " 1
-  " you should check your plugin dependencies here.
-  if !exists('g:my_plugin_dictionary_file_path')
-    return {'status':'-1',
-          \'description':"You must set a dictionary file. Failed to enable dictionary that is a plugin of ECY."}
-  endif
-
-  " 2
   " checked. Must return 'status':0, then return python Server.
   return {'status':'0', 'description':"ok", 'name': s:your_plugin_name}
 endf
