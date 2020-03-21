@@ -3,7 +3,7 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 fun! s:HasECY(versions)
   if exists('g:loaded_easycomplete') && g:loaded_easycomplete == v:true 
-        \&& g:ECY_version['version'] >= a:version
+        \&& g:ECY_version['version'] >= a:versions
     return v:true
   endif
   return v:false
