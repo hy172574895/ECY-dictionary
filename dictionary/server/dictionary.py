@@ -14,6 +14,7 @@ class Operate(scope_.Source_interface):
         self._dict_file_name = None
         self._csv__dict_cache = None
         self._items_lists_cache = []
+        self._use_chinese = True
 
     def GetInfo(self):
         return {'Name': self._name, 'WhiteList': ['all'],
@@ -27,6 +28,7 @@ class Operate(scope_.Source_interface):
             return None
         self._dict_file_name = version['DictFileName']
         try:
+            self._use_chinese = version['UseChinese']
             self._generate_csv(self._dict_file_name)
             self._generate_txt(version['AdditionalPath'])
             g_logger.debug(len(self._items_lists_cache))
@@ -71,10 +73,32 @@ class Operate(scope_.Source_interface):
                 'user_data': ''}
         word['abbr'] = word_info['word']
         word['word'] = word_info['word']
-        word['info'] = self._format_info(word_info)
+        if self._use_chinese:
+            word['info'] = self._format_info_chinese(word_info)
+        else:
+            word['info'] = self._format_info_english(word_info)
         return word
 
-    def _format_info(self, word_info):
+    def _format_info_english(self, word_info):
+        temp = []
+        if word_info['phonetic'] != '':
+            temp.append('/' + word_info['phonetic'] + '/')
+        level = ''
+        if word_info['collins']:
+            level += 'collins;'
+        if word_info['oxford']:
+            level += 'oxford'
+        if level != '':
+            temp.append(level)
+        if word_info['tag'] != '':
+            temp.append("tag:" + word_info['tag'])
+        if word_info['exchange'] != '':
+            temp.append("exchange:" + word_info['exchange'])
+        temp.append('--------------------')
+        temp.extend(word_info['definition'].split("\\n"))
+        return temp
+
+    def _format_info_chinese(self, word_info):
         """ return lists
         """
         temp = []

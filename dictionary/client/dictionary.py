@@ -16,5 +16,6 @@ class Operate(scope_.Event):
         msg = {}
         msg['DictFileName'] = self._get_dictionary_file_name()
         msg['Frequency'] = vim_lib.GetVariableValue('g:dictionary_frequency_of_filtering_words')
+        msg['UseChinese'] = vim_lib.GetVariableValue('g:dictionary_show_chinese_in_preview_windows')
         msg['AdditionalPath'] = vim_lib.GetVariableValue('g:dictionary_additional_dict_path')
         return self._pack(msg, 'OnBufferEnter')
