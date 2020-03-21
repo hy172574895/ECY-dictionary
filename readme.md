@@ -21,9 +21,9 @@ default value: '~/ecdict.csv'
 
 ## g:dictionary_show_chinese_in_preview_windows
 **Boolean**  
-default value: v:true
-To use Chinese in preview windows. To use English if its values is false. 
-such as `let g:dictionary_show_chinese_in_preview_windows = v:false`
+default value: v:true  
+To use Chinese in preview windows. To use English if its values is false.  
+such as `let g:dictionary_show_chinese_in_preview_windows = v:false`  
 
 
 ## g:dictionary_additional_dict_path
