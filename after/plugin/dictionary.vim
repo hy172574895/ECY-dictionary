@@ -58,7 +58,7 @@ let g:dictionary_additional_dict_path =
       \get(g:, 'dictionary_additional_dict_path', [])
 
 let g:dictionary_show_chinese_in_preview_windows = 
-      \get(g:, 'dictionary_show_chinese_in_preview_windows', v:false)
+      \get(g:, 'dictionary_show_chinese_in_preview_windows', v:true)
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
