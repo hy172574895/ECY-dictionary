@@ -1,14 +1,15 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                 Check ECY                                  "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-fun! s:HasECY()
-  if exists('g:loaded_easycomplete') && g:loaded_easycomplete == v:true
+fun! s:HasECY(versions)
+  if exists('g:loaded_easycomplete') && g:loaded_easycomplete == v:true 
+        \&& g:ECY_version['version'] >= a:version
     return v:true
   endif
   return v:false
 endf
 
-if !s:HasECY()
+if !s:HasECY(10)
   finish
 endif
 
@@ -28,7 +29,11 @@ let s:server_full_path = s:current_file_dir . '/dictionary/server/dictionary.py'
 
 "{{{
 fun! s:MyInstaller() " called by user. Maybe only once.
-  " checked. Must return 'status':0, then return python Server.
+  "1 check something you need.
+  if !executable(g:dictionary_csv_file_path)
+    return {'status':'1', 'description': "g:dictionary_csv_file_path not available."}
+  endif
+  "2 checked. Must return 'status':0, then return python Server.
   return {'status':'0', 'description':"ok", 'name': s:your_plugin_name}
 endf
 
