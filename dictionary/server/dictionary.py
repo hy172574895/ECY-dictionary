@@ -127,15 +127,9 @@ class Operate(scope_.Source_interface):
         return_ = {'ID': version['VersionID'], 'Lists': self._items_lists_cache}
         return return_
 
-    def _get_word(self, current_line, colum):
-        pass
-
     def OnDocumentHelp(self, version):
-        g_logger.debug('sdfsdfsdf')
-        current_line = version['CurrentLineText']
-        current_line_colum = version['StartPosition']['Colum']
-        current_word = self._get_word(current_line, current_line_colum)
-        current_word = 'hello'
+        current_word = version['CursorWord']
+        g_logger.debug(current_word)
         results = {'ID': version['VersionID']}
         lists = [current_word]
         for item in self._items_lists_cache:
