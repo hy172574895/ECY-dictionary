@@ -4,7 +4,7 @@ import logging
 global g_logger
 g_logger = logging.getLogger('ECY_server')
 
-import utils.interface as scope_
+import ECY.utils.interface as scope_
 
 # the class must be named as 'Operate'
 class Operate(scope_.Source_interface):

@@ -1,5 +1,5 @@
-import lib.scope as scope_
-import lib.vim_or_neovim_support as vim_lib
+import ECY.utils.scope as scope_
+import ECY.utils.vim_or_neovim_support as vim_lib
 
 # the class must be named as 'Operate'
 class Operate(scope_.Event):
