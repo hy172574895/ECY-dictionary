@@ -64,5 +64,17 @@ let g:dictionary_show_chinese_in_preview_windows =
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                 Add to ECY                                 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-call ECY#install#AddEngineInfo(s:your_plugin_name, s:client_full_path,
-      \s:server_full_path, function('s:MyInstaller'), function('s:MyUnInstaller'))
+
+let s:capabilities = ['DocumentHlep', 'Completion']
+
+let s:add_info = {
+      \'engine_name':        s:your_plugin_name,
+      \'client_module_path': s:client_full_path,
+      \'server_module_path': s:server_full_path,
+      \'install_fuc':        function('s:MyInstaller'),
+      \'uninstall_fuc':      function('s:MyUnInstaller'),
+      \'is_buildin':         v:false,
+      \'capabilities':       s:capabilities
+      \}
+
+call ECY#install#AddEngine(s:add_info)
